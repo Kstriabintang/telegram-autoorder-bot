@@ -1,3 +1,13 @@
+// Polyfill fetch untuk Node.js < 18 (Node 16 tidak punya global fetch).
+// node-fetch v2 = CommonJS, jadi aman di-require. Di Node 18+ blok ini dilewati.
+if (!globalThis.fetch) {
+  const nodeFetch = require('node-fetch');
+  globalThis.fetch = nodeFetch;
+  globalThis.Headers = nodeFetch.Headers;
+  globalThis.Request = nodeFetch.Request;
+  globalThis.Response = nodeFetch.Response;
+}
+
 require('dotenv').config();
 const { Telegraf } = require('telegraf');
 const { createClient } = require('@supabase/supabase-js');
