@@ -1,0 +1,16 @@
+{
+  "name": "telegram-auto-order-bot",
+  "version": "1.0.0",
+  "description": "Telegram auto order bot — penjualan produk digital otomatis dengan pembayaran QRIS (polling mode).",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "telegraf": "^4.16.3",
+    "qrcode": "^1.5.3",
+    "axios": "^1.6.8",
+    "@supabase/supabase-js": "^2.45.4",
+    "dotenv": "^16.4.5"
+  }
+}

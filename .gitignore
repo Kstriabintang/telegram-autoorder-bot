@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Environment & secrets
+.env
+.env.local
+*.local
+
+# Logs
+bot.log
+*.log
+npm-debug.log*
+
+# Python leftovers
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store
+*.swp
+
+# Claude Code local settings (per-user)
+.claude/settings.local.json
