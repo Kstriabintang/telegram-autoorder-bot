@@ -316,9 +316,15 @@ Tekan tombol *🛍️ Beli Sekarang* di bawah ⬇️
 ━━━━━━━━━━━━━━━━━━━
 ⚡ _Cepat • Aman • Terpercaya_`;
 
+  // Pakai file_id kalau sudah pernah diambil; kalau belum, pakai URL banner.
+  const photo = bannerFileId || BANNER_URL;
+
+  // Tanpa banner (BANNER_URL kosong & belum ada file_id) -> langsung teks saja.
+  if (!photo) {
+    return ctx.reply(caption, { parse_mode: 'Markdown', reply_markup: mainKeyboard });
+  }
+
   try {
-    // Pakai file_id kalau sudah pernah diambil; kalau belum, pakai URL CDN.
-    const photo = bannerFileId || BANNER_URL;
     const sent = await ctx.replyWithPhoto(photo, {
       caption, parse_mode: 'Markdown', reply_markup: mainKeyboard
     });
