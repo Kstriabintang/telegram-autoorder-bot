@@ -36,7 +36,7 @@ webhook. Cukup dijalankan di RDP / VPS / PC mana pun yang menyala terus.
 ### 1. Clone repository
 
 ```bash
-git clone <url-repository-anda>
+git clone https://github.com/Kstriabintang/telegram-autoorder-bot.git
 cd telegram-auto-order-bot
 ```
 
