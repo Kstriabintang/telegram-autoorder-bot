@@ -2,6 +2,9 @@ require('dotenv').config();
 const { Telegraf } = require('telegraf');
 const { createClient } = require('@supabase/supabase-js');
 const axios = require('axios');
+// Node.js < 22 tidak punya WebSocket global -> sediakan implementasi 'ws'
+// agar supabase-js (realtime) tetap jalan di Node 16/18/20.
+const ws = require('ws');
 
 // Nama produk & kontak owner — diisi lewat .env agar bot generic / bisa dipakai ulang.
 const PRODUCT_NAME = process.env.PRODUCT_NAME || 'Digital Product';
@@ -15,7 +18,8 @@ const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 // Pakai service_role key (bypass RLS, untuk backend). Fallback ke anon key.
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY,
+  { realtime: { transport: ws } }
 );
 
 const PAKASIR_BASE = 'https://app.pakasir.com/api';
